@@ -2,8 +2,8 @@
 
   $hname = 'localhost';
   $uname = 'root';
-  $pass = '1809';
-  $db = 'testpj2';
+  $pass = '';
+  $db = 'kinghomestay';
 
   $con = mysqli_connect($hname, $uname, $pass, $db);
 
