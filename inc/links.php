@@ -12,7 +12,12 @@
 
   require('admin/inc/db_config.php');
   require('admin/inc/essentials.php');
-  
+  $intro_q = mysqli_query($con, "SELECT * FROM about_us WHERE section='intro' AND status=1 ORDER BY display_order");
+  $feature_q = mysqli_query($con, "SELECT * FROM about_us WHERE section='feature' AND status=1 ORDER BY display_order");
+  $mission_q = mysqli_query($con, "SELECT * FROM about_us WHERE section='mission' AND status=1 LIMIT 1");
+  $mission = mysqli_fetch_assoc($mission_q);
+  $vision_q = mysqli_query($con, "SELECT * FROM about_us WHERE section='vision' AND status=1 LIMIT 1");
+  $vision = mysqli_fetch_assoc($vision_q);
   $contact_q = "SELECT * FROM `contact_details` WHERE `sr_no`=?";
   $settings_q = "SELECT * FROM `settings` WHERE `sr_no`=?";
   $values = [1];
