@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <a class="navbar-brand me-5 fw-bold fs-3 h-font" href="index.php">     
       <?php echo $settings_r['site_title'] ?>
-      <img src="images/logohm.png" alt="Logo" width="60" height="60" class="me-2">
+      <!-- <img src="images/logohm.png" alt="Logo" width="60" height="60" class="me-2"> -->
     </a>
     <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
