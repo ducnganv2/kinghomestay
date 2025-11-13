@@ -1,66 +1,154 @@
-<nav id="nav-bar" class="navbar navbar-expand-lg navbar-light bg-white px-lg-3 py-lg-2 shadow-sm sticky-top">
-  <div class="container-fluid">
-    <a class="navbar-brand me-5 fw-bold fs-3 h-font" href="index.php">     
-      <?php echo $settings_r['site_title'] ?>
-      <!-- <img src="images/logohm.png" alt="Logo" width="60" height="60" class="me-2"> -->
-    </a>
-    <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+<nav id="nav-bar" class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+  <div class="container-fluid px-lg-4">
+    <!-- Logo ở giữa trên mobile, trái trên desktop -->
+    <a class="navbar-brand d-flex align-items-center fw-bold fs-3 h-font order-lg-1" href="index.php">
+      <img src="images/logohm.png" alt="Logo" width="50" height="50" class="me-2">
+      <span class="d-none d-lg-inline"><?php echo $settings_r['site_title'] ?></span>
+    <!-- User menu/buttons bên phải -->
+    <div class="d-flex align-items-center order-lg-3 ms-auto">
+      <?php 
+        if(isset($_SESSION['login']) && $_SESSION['login']==true)
+        {
+          $path = USERS_IMG_PATH;
+          echo<<<data
+            <div class="dropdown">
+              <button class="btn btn-light shadow-none d-flex align-items-center dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="$path$_SESSION[uPic]" style="width: 35px; height: 35px;" class="rounded-circle me-2">
+                <span class="d-none d-md-inline">$_SESSION[uName]</span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow">
+                <li><a class="dropdown-item" href="profile.php"><i class="bi bi-person me-2"></i>Hồ sơ cá nhân</a></li>
+                <li><a class="dropdown-item" href="bookings.php"><i class="bi bi-calendar-check me-2"></i>Lịch sử đặt phòng</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item text-danger" href="logout.php"><i class="bi bi-box-arrow-right me-2"></i>Đăng xuất</a></li>
+              </ul>
+            </div>
+          data;
+        }
+        else
+        {
+          echo<<<data
+            <button type="button" class="btn btn-outline-dark shadow-none me-2" data-bs-toggle="modal" data-bs-target="#loginModal">
+              <i class="bi bi-box-arrow-in-right me-1"></i>
+              <span class="d-none d-sm-inline">Đăng nhập</span>
+            </button>
+            <button type="button" class="btn btn-dark shadow-none" data-bs-toggle="modal" data-bs-target="#registerModal">
+              <i class="bi bi-person-plus me-1"></i>
+              <span class="d-none d-sm-inline">Đăng ký</span>
+            </button>
+          data;
+        }
+      ?>
+      
+      <!-- Toggle button cho mobile -->
+      <button class="navbar-toggler ms-2 shadow-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+
+    <!-- Navigation menu ở giữa -->
+    <div class="collapse navbar-collapse order-lg-2" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link me-2" href="index.php">Trang chủ</a>
+          <a class="nav-link px-3" href="index.php">
+            <i class="bi bi-house-door me-1"></i>Trang chủ
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link me-2" href="rooms.php">Danh sách phòng</a>
+          <a class="nav-link px-3" href="rooms.php">
+            <i class="bi bi-door-open me-1"></i>Danh sách phòng
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link me-2" href="facilities.php">Tiện ích</a>
+          <a class="nav-link px-3" href="facilities.php">
+            <i class="bi bi-star me-1"></i>Tiện ích
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link me-2" href="contact.php">Liên hệ</a>
+          <a class="nav-link px-3" href="contact.php">
+            <i class="bi bi-envelope me-1"></i>Liên hệ
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="about.php">Về chúng tôi</a>
+          <a class="nav-link px-3" href="about.php">
+            <i class="bi bi-info-circle me-1"></i>Về chúng tôi
+          </a>
         </li>
       </ul>
-      <div class="d-flex">
-        <?php 
-          if(isset($_SESSION['login']) && $_SESSION['login']==true)
-          {
-            $path = USERS_IMG_PATH;
-            echo<<<data
-              <div class="btn-group">
-                <button type="button" class="btn btn-outline-dark shadow-none dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                  <img src="$path$_SESSION[uPic]" style="width: 25px; height: 25px;" class="me-1 rounded-circle">
-                  $_SESSION[uName]
-                </button>
-                <ul class="dropdown-menu dropdown-menu-lg-end">
-                  <li><a class="dropdown-item" href="profile.php">Hồ sơ cá nhân</a></li>
-                  <li><a class="dropdown-item" href="bookings.php">Lịch sử đặt phòng</a></li>
-                  <li><a class="dropdown-item" href="logout.php">Đăng xuất</a></li>
-                </ul>
-              </div>
-            data;
-          }
-          else
-          {
-            echo<<<data
-              <button type="button" class="btn btn-outline-dark shadow-none me-lg-3 me-2" data-bs-toggle="modal" data-bs-target="#loginModal">
-                Đăng nhập
-              </button>
-              <button type="button" class="btn btn-outline-dark shadow-none" data-bs-toggle="modal" data-bs-target="#registerModal">
-                Đăng ký
-              </button>
-            data;
-          }
-        ?>
-      </div>
     </div>
   </div>
 </nav>
 
+<!-- CSS tùy chỉnh -->
+<style>
+  #nav-bar {
+    padding: 0.75rem 0;
+    transition: all 0.3s ease;
+  }
+
+  .navbar-brand {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+  }
+
+  .navbar-brand:hover {
+    transform: scale(1.05);
+  }
+
+  .nav-link {
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #212529;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    width: 80%;
+  }
+
+  .nav-link:hover {
+    color: #212529 !important;
+  }
+
+  .dropdown-menu {
+    border: none;
+    margin-top: 0.5rem;
+  }
+
+  .dropdown-item {
+    padding: 0.75rem 1.25rem;
+    transition: all 0.2s ease;
+  }
+
+  .dropdown-item:hover {
+    background-color: #f8f9fa;
+    padding-left: 1.5rem;
+  }
+
+  @media (max-width: 991px) {
+    .navbar-nav {
+      padding: 1rem 0;
+    }
+    
+    .nav-link {
+      padding: 0.75rem 1rem !important;
+    }
+  }
+</style>
+
+<!-- Modals giữ nguyên như cũ -->
 <div class="modal fade" id="loginModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
