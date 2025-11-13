@@ -208,7 +208,7 @@
 
   <!-- Our Facilities -->
 
-  <!-- <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">Các tiện tích</h2>
+  <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">Các tiện tích</h2>
 
   <div class="container">
     <div class="row justify-content-evenly px-lg-0 px-md-0 px-5">
@@ -230,7 +230,7 @@
         <a href="facilities.php" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">Tìm hiểu thêm >>></a>
       </div>
     </div>
-  </div> -->
+  </div>
 
   <!-- Reach us -->
 
