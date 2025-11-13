@@ -348,7 +348,7 @@
   <section class="cta-section">
     <h2>Đặt Phòng Ngay Hôm Nay</h2>
     <p>Nhận ưu đãi đặc biệt khi đặt phòng trực tuyến</p>
-    <a href="#rooms" class="btn-main">Đặt Phòng</a>
+    <a href="#rooms" class="btn-main">Đặt Phòngg</a>
   </section>
 
   <?php require('inc/footer.php');?>
