@@ -232,16 +232,6 @@
       margin-bottom: 30px;
     }
 
-    /* Footer */
-    footer {
-      background: #222;
-      color: white;
-      text-align: center;
-      padding: 30px 10px;
-      font-size: 0.95rem;
-    }
-
-    /* Responsive */
     @media (max-width: 992px) {
       .service-item {
         flex-direction: column;
