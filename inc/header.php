@@ -4,6 +4,7 @@
     <a class="navbar-brand d-flex align-items-center fw-bold fs-3 h-font order-lg-1" href="index.php">
       <img src="images/logohm.png" alt="Logo" width="50" height="50" class="me-2">
       <span class="d-none d-lg-inline"><?php echo $settings_r['site_title'] ?></span>
+    </a>
     <!-- User menu/buttons bên phải -->
     <div class="d-flex align-items-center order-lg-3 ms-auto">
       <?php 
@@ -62,6 +63,11 @@
         <li class="nav-item">
           <a class="nav-link px-3" href="facilities.php">
             <i class="bi bi-star me-1"></i>Tiện ích
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3" href="coffee.php">
+            <i class="bi bi-cup-hot me-1"></i>Cà phê
           </a>
         </li>
         <li class="nav-item">

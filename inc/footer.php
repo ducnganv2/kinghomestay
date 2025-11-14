@@ -1,5 +1,5 @@
 <!-- Footer chính -->
-<footer class="footer-section bg-dark text-white mt-5">
+<footer class="footer-section bg-dark text-white">
   <div class="container py-5">
     <div class="row g-4">
       <!-- Cột 1: Về chúng tôi -->

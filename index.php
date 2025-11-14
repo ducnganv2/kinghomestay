@@ -4,11 +4,10 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link  rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css">
   <?php require('inc/links.php'); ?>
   <link rel="icon" type="image/png" href="images/logohm.png">
   <title><?php echo $settings_r['site_title'] ?> - Trang chủ</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -17,331 +16,718 @@
     }
 
     body {
-      font-family: 'Montserrat', sans-serif;
-      background: #faf9f7;
-      color: #333;
+      font-family: 'Arial', sans-serif;
       overflow-x: hidden;
     }
 
-    /* Hero Banner */
-    .hero-banner {
+    /* Hero Carousel Section */
+    .hero-carousel {
       position: relative;
-      height: 90vh;
-      background: url('images/banner.jpg') center/cover no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: white;
+      height: 85vh;
+      min-height: 500px;
+    }
+
+    .swiper-hero {
+      width: 100%;
+      height: 100%;
+    }
+
+    .swiper-hero .swiper-slide {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .swiper-hero .swiper-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .hero-overlay {
       position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.45);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.5));
+      z-index: 1;
     }
 
     .hero-content {
-      position: relative;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: white;
       z-index: 2;
-      max-width: 700px;
+      width: 90%;
+      max-width: 900px;
     }
 
-    .hero-content h1 {
-      font-size: 3rem;
-      font-weight: 700;
-      margin-bottom: 15px;
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+      letter-spacing: 2px;
     }
 
-    .hero-content p {
-      font-size: 1.2rem;
-      margin-bottom: 25px;
-      line-height: 1.6;
+    .hero-subtitle {
+      margin-bottom: 35px;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
     }
 
-    .btn-main {
-      background: #b9975b;
+    .hero-btn {
+      display: inline-block;
+      padding: 16px 45px;
+      background: #c9a961;
       color: white;
       text-decoration: none;
-      padding: 12px 35px;
-      border-radius: 25px;
+      font-size: 1.1rem;
       font-weight: 600;
+      border-radius: 5px;
       transition: all 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
-    .btn-main:hover {
-      background: #a58247;
+    .hero-btn:hover {
+      background: #b8944d;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(201, 169, 97, 0.4);
+      color: white;
     }
 
     /* Booking Bar */
     .booking-bar {
       background: white;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-      padding: 20px;
-      max-width: 900px;
-      margin: -50px auto 60px;
-      display: flex;
-      gap: 10px;
-      border-radius: 10px;
-      z-index: 10;
+      box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+      padding: 25px;
+      margin-top: -50px;
       position: relative;
+      z-index: 3;
+      border-radius: 10px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    .booking-bar input, .booking-bar select {
-      flex: 1;
+    .booking-form {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      align-items: end;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      color: #333;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
       padding: 12px;
-      border: 1px solid #ccc;
+      border: 1px solid #ddd;
       border-radius: 5px;
       font-size: 1rem;
     }
 
-    .booking-bar button {
-      background: #b9975b;
+    .booking-btn {
+      padding: 12px 30px;
+      background: #c9a961;
       color: white;
       border: none;
-      padding: 12px 30px;
       border-radius: 5px;
-      cursor: pointer;
+      font-size: 1rem;
       font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-transform: uppercase;
     }
 
-    .booking-bar button:hover {
-      background: #a58247;
+    .booking-btn:hover {
+      background: #b8944d;
+      transform: translateY(-2px);
     }
 
-    /* Section Titles */
-    .section-title {
-      text-align: center;
-      font-size: 2.3rem;
-      margin: 80px 0 50px;
-      color: #333;
-      font-weight: 700;
+    /* Section Styles */
+    .section {
+      padding: 80px 20px;
     }
 
-    /* Services Section */
-    .services {
-      display: flex;
-      flex-direction: column;
-      gap: 60px;
-      padding: 0 20px;
+    .section-dark {
+      background: #f8f9fa;
+    }
+
+    .container {
       max-width: 1200px;
-      margin: auto;
+      margin: 0 auto;
     }
 
-    .service-item {
-      display: flex;
-      align-items: center;
-      gap: 40px;
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
     }
 
-    .service-item.reverse {
-      flex-direction: row-reverse;
-    }
-
-    .service-item img {
-      width: 50%;
-      border-radius: 15px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-    }
-
-    .service-text {
-      width: 50%;
-    }
-
-    .service-text h2 {
-      color: #b9975b;
-      font-size: 1.8rem;
+    .section-title {
+      font-size: 2.8rem;
+      color: #2c3e50;
       margin-bottom: 15px;
+      font-weight: bold;
+      position: relative;
+      display: inline-block;
     }
 
-    .service-text p {
-      color: #555;
-      line-height: 1.6;
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: #c9a961;
     }
 
-    /* Rooms */
+    .section-subtitle {
+      font-size: 1.2rem;
+      color: #666;
+      margin-top: 20px;
+    }
+
+    /* Rooms Grid */
     .rooms-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 30px;
-      max-width: 1200px;
-      margin: auto;
-      padding: 0 20px 80px;
+      align-items: stretch;
     }
 
     .room-card {
       background: white;
-      border-radius: 15px;
+      border-radius: 10px;
       overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      transition: transform 0.3s;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
     }
 
     .room-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-10px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
     }
 
-    .room-card img {
+    .room-image {
       width: 100%;
       height: 250px;
       object-fit: cover;
+      flex-shrink: 0;
     }
 
     .room-info {
       padding: 25px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
     }
 
-    .room-info h3 {
-      font-size: 1.4rem;
-      color: #333;
-      margin-bottom: 10px;
-      font-weight: 700;
+    .room-title {
+      font-size: 1.6rem;
+      color: #2c3e50;
+      margin-bottom: 12px;
+      font-weight: bold;
     }
 
-    .room-info p {
+    .room-features {
+      display: flex;
+      gap: 15px;
+      margin: 15px 0;
       color: #666;
-      margin-bottom: 15px;
-      line-height: 1.6;
+      font-size: 0.95rem;
     }
 
-    .room-info a {
-      background: #b9975b;
-      color: white;
+    .room-feature {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .room-desc {
+      color: #666;
+      line-height: 1.6;
+      margin: 15px 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .room-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 15px;
+      border-top: 1px solid #eee;
+      margin-top: auto;
+    }
+
+    .room-price {
+      font-size: 1.8rem;
+      color: #c9a961;
+      font-weight: bold;
+    }
+
+    .room-price span {
+      font-size: 0.9rem;
+      color: #999;
+      font-weight: normal;
+    }
+
+    .room-btn {
       padding: 10px 25px;
-      border-radius: 25px;
+      background: #c9a961;
+      color: white;
       text-decoration: none;
+      border-radius: 5px;
+      transition: all 0.3s;
       font-weight: 600;
     }
 
-    /* CTA */
-    .cta-section {
-      background: linear-gradient(135deg, #b9975b 0%, #a58247 100%);
+    .room-btn:hover {
+      background: #b8944d;
       color: white;
-      text-align: center;
-      padding: 80px 20px;
     }
 
-    .cta-section h2 {
-      font-size: 2.5rem;
+    /* Facilities Section */
+    .facilities-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      align-items: stretch;
+    }
+
+    .facility-card {
+      text-align: center;
+      padding: 35px 20px;
+      background: white;
+      border-radius: 10px;
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+
+    .facility-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .facility-icon {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 20px;
+    }
+
+    .facility-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .facility-title {
+      font-size: 1.3rem;
+      color: #2c3e50;
+      margin-bottom: 12px;
+      font-weight: bold;
+    }
+
+    /* About Section */
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .about-text h3 {
+      font-size: 2rem;
+      color: #2c3e50;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    .about-text p {
+      color: #666;
+      line-height: 1.8;
+      margin-bottom: 15px;
+    }
+
+    .about-image {
+      width: 100%;
+      height: 400px;
+      border-radius: 10px;
+      object-fit: cover;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    /* Stats Section */
+    .stats-section {
+      background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+      padding: 60px 20px;
+      color: white;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .stat-label {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/carousel/bg1.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      padding: 100px 20px;
+      text-align: center;
+      color: white;
+    }
+
+    .cta-title {
+      font-size: 3rem;
+      font-weight: bold;
       margin-bottom: 20px;
     }
 
-    .cta-section p {
-      font-size: 1.2rem;
-      margin-bottom: 30px;
+    .cta-subtitle {
+      font-size: 1.3rem;
+      margin-bottom: 40px;
     }
 
-    @media (max-width: 992px) {
-      .service-item {
-        flex-direction: column;
+    .cta-btn-group {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .cta-btn-primary {
+      padding: 16px 45px;
+      background: #c9a961;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      transition: all 0.3s;
+      text-transform: uppercase;
+    }
+
+    .cta-btn-primary:hover {
+      background: #b8944d;
+      transform: translateY(-2px);
+      color: white;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2rem;
       }
-      .service-item.reverse {
-        flex-direction: column;
+
+      .hero-subtitle {
+        font-size: 1.1rem;
       }
-      .service-item img, .service-text {
-        width: 100%;
+
+      .section-title {
+        font-size: 2rem;
       }
-      .booking-bar {
-        flex-direction: column;
+
+      .about-content {
+        grid-template-columns: 1fr;
+      }
+
+      .booking-form {
+        grid-template-columns: 1fr;
+      }
+
+      .rooms-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .facilities-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stat-number {
+        font-size: 2rem;
+      }
+
+      .cta-title {
+        font-size: 2rem;
       }
     }
 
+    @media (max-width: 1024px) and (min-width: 769px) {
+      .rooms-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .facilities-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
   </style>
 </head>
 <body>
 
-  <?php require('inc/header.php');?>
+  <?php require('inc/header.php'); ?>
 
-  <!-- HERO -->
-  <section class="hero-banner">
-    <div class="hero-overlay"></div>
+  <!-- Hero Carousel Section -->
+  <section class="hero-carousel">
+    <div class="swiper swiper-hero">
+      <div class="swiper-wrapper">
+        <?php 
+          while($carousel = mysqli_fetch_assoc($carousel_res)) {
+            $image_path = CAROUSEL_IMG_PATH . $carousel['image'];
+            echo <<<SLIDE
+              <div class="swiper-slide">
+                <img src="{$image_path}" alt="Hero Image">
+                <div class="hero-overlay"></div>
+              </div>
+            SLIDE;
+          }
+        ?>
+      </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+    
     <div class="hero-content">
-      <h1>King Homestay & Coffee</h1>
-      <p>Không gian nghỉ dưỡng lý tưởng - Trải nghiệm như ở nhà</p>
-      <a href="#rooms" class="btn-main">Khám Phá Ngay</a>
+      <h1 class="hero-title"><?php echo $settings_r['site_title']; ?></h1>
+      <p class="hero-subtitle"><?php echo $settings_r['site_about']; ?></p>
+      <a href="#rooms" class="hero-btn">Khám Phá Phòng</a>
     </div>
   </section>
 
   <!-- Booking Bar -->
-  <section class="booking-bar">
-    <input type="date" placeholder="Ngày đến">
-    <input type="date" placeholder="Ngày đi">
-    <select>
-      <option>1 người</option>
-      <option>2 người</option>
-      <option>Gia đình</option>
-    </select>
-    <button>Tìm Phòng</button>
-  </section>
-
-  <!-- Services -->
-  <h2 class="section-title" id="services">Dịch Vụ Của Chúng Tôi</h2>
-  <section class="services">
-    <div class="service-item">
-      <img src="images/about/sec.svg" alt="An toàn & bảo mật">
-      <div class="service-text">
-        <h2>An Toàn & Bảo Mật</h2>
-        <p>Hệ thống an ninh hiện đại 24/7 đảm bảo sự an toàn tuyệt đối cho quý khách.</p>
-      </div>
-    </div>
-
-    <div class="service-item reverse">
-      <img src="images/about/quality.svg" alt="Chất lượng cao">
-      <div class="service-text">
-        <h2>Chất Lượng Cao</h2>
-        <p>Phòng ốc tiện nghi, sạch sẽ, hiện đại mang lại cảm giác thoải mái nhất.</p>
-      </div>
-    </div>
-
-    <div class="service-item">
-      <img src="images/about/tt.svg" alt="Phục vụ tận tâm">
-      <div class="service-text">
-        <h2>Phục Vụ Tận Tâm</h2>
-        <p>Đội ngũ nhân viên chuyên nghiệp, thân thiện và tận tâm phục vụ quý khách.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Rooms -->
-  <h2 class="section-title" id="rooms">Phòng Của Chúng Tôi</h2>
-  <div class="rooms-grid">
-    <div class="room-card">
-      <img src="images/rooms/img1.jpg" alt="Phòng Deluxe">
-      <div class="room-info">
-        <h3>Phòng Deluxe</h3>
-        <p>Không gian sang trọng, tiện nghi hiện đại, view đẹp.</p>
-        <a href="#">Xem Chi Tiết</a>
-      </div>
-    </div>
-
-    <div class="room-card">
-      <img src="images/rooms/img2.jpg" alt="Phòng Suite">
-      <div class="room-info">
-        <h3>Phòng Suite</h3>
-        <p>Phù hợp cho gia đình hoặc nhóm bạn, rộng rãi và thoải mái.</p>
-        <a href="#">Xem Chi Tiết</a>
-      </div>
-    </div>
-
-    <div class="room-card">
-      <img src="images/rooms/img3.jpg" alt="Phòng Standard">
-      <div class="room-info">
-        <h3>Phòng Standard</h3>
-        <p>Giá cả hợp lý, tiện nghi đầy đủ, đáp ứng mọi nhu cầu.</p>
-        <a href="#">Xem Chi Tiết</a>
-      </div>
+  <div class="container">
+    <div class="booking-bar">
+      <form class="booking-form" action="rooms.php" method="GET">
+        <div class="form-group">
+          <label>Nhận phòng</label>
+          <input type="date" name="checkin" required>
+        </div>
+        <div class="form-group">
+          <label>Trả phòng</label>
+          <input type="date" name="checkout" required>
+        </div>
+        <div class="form-group">
+          <label>Người lớn</label>
+          <select name="adult">
+            <option value="1">1</option>
+            <option value="2" selected>2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Trẻ em</label>
+          <select name="children">
+            <option value="0" selected>0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="booking-btn">Tìm Phòng</button>
+        </div>
+      </form>
     </div>
   </div>
 
-  <!-- CTA -->
-  <section class="cta-section">
-    <h2>Đặt Phòng Ngay Hôm Nay</h2>
-    <p>Nhận ưu đãi đặc biệt khi đặt phòng trực tuyến</p>
-    <a href="#rooms" class="btn-main">Đặt Phòngg</a>
+  <!-- Rooms Section -->
+  <section class="section" id="rooms">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Phòng & Căn Hộ</h2>
+        <p class="section-subtitle">Khám phá không gian nghỉ dưỡng lý tưởng của chúng tôi</p>
+      </div>
+
+      <div class="rooms-grid">
+        <?php 
+          while($room = mysqli_fetch_assoc($rooms_res)) {
+            // Lấy ảnh thumbnail của phòng
+            $room_thumb_q = "SELECT * FROM `room_images` WHERE `room_id`='{$room['id']}' AND `thumb`='1'";
+            $room_thumb_res = mysqli_query($con, $room_thumb_q);
+            $room_thumb = mysqli_fetch_assoc($room_thumb_res);
+            $thumb_path = ROOMS_IMG_PATH . $room_thumb['image'];
+
+            // Format giá
+            $price = number_format($room['price'], 0, ',', '.');
+
+            echo <<<ROOM
+              <div class="room-card">
+                <img src="{$thumb_path}" alt="{$room['name']}" class="room-image">
+                <div class="room-info">
+                  <h3 class="room-title">{$room['name']}</h3>
+                  <div class="room-features">
+                    <div class="room-feature">
+                      <i class="bi bi-people"></i>
+                      <span>{$room['adult']} người lớn</span>
+                    </div>
+                    <div class="room-feature">
+                      <i class="bi bi-arrows-angle-expand"></i>
+                      <span>{$room['area']}m²</span>
+                    </div>
+                  </div>
+                  <p class="room-desc">{$room['description']}</p>
+                  <div class="room-footer">
+                    <div class="room-price">
+                      {$price}₫ <span>/đêm</span>
+                    </div>
+                    <a href="room_details.php?id={$room['id']}" class="room-btn">Chi Tiết</a>
+                  </div>
+                </div>
+              </div>
+            ROOM;
+          }
+        ?>
+      </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 50px;">
+        <a href="rooms.php" class="hero-btn">Xem Tất Cả Phòng</a>
+      </div>
+    </div>
   </section>
 
-  <?php require('inc/footer.php');?>
+  <!-- Facilities Section -->
+  <section class="section section-dark">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Tiện Nghi & Dịch Vụ</h2>
+        <p class="section-subtitle">Trải nghiệm đầy đủ tiện nghi hiện đại</p>
+      </div>
 
+      <div class="facilities-grid">
+        <?php 
+          while($facility = mysqli_fetch_assoc($facilities_res)) {
+            $icon_path = FACILITIES_IMG_PATH . $facility['icon'];
+            echo <<<FACILITY
+              <div class="facility-card">
+                <div class="facility-icon">
+                  <img src="{$icon_path}" alt="{$facility['name']}">
+                </div>
+                <h3 class="facility-title">{$facility['name']}</h3>
+              </div>
+            FACILITY;
+          }
+        ?>
+      </div>
+
+      <div style="text-align: center; margin-top: 50px;">
+        <a href="facilities.php" class="hero-btn">Xem Thêm Tiện Nghi</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">1000+</div>
+          <div class="stat-label">Khách Hàng Hài Lòng</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">50+</div>
+          <div class="stat-label">Phòng Hiện Đại</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">24/7</div>
+          <div class="stat-label">Hỗ Trợ Tận Tình</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">5★</div>
+          <div class="stat-label">Đánh Giá Trung Bình</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <h2 class="cta-title">Đặt Phòng Ngay Hôm Nay</h2>
+      <p class="cta-subtitle">Nhận ưu đãi đặc biệt khi đặt phòng trực tuyến</p>
+      <div class="cta-btn-group">
+        <a href="rooms.php" class="cta-btn-primary">Đặt Phòng Ngay</a>
+        <a href="contact.php" class="cta-btn-primary">Liên Hệ Chúng Tôi</a>
+      </div>
+    </div>
+  </section>
+
+  <?php require('inc/footer.php'); ?>
+
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script>
+    // Hero Carousel
+    var heroSwiper = new Swiper(".swiper-hero", {
+      loop: true,
+      autoplay: {
+        delay: 4000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      effect: 'fade',
+      fadeEffect: {
+        crossFade: true
+      }
+    });
+
+    // Set minimum date for check-in to today
+    const today = new Date().toISOString().split('T')[0];
+    document.querySelector('input[name="checkin"]').setAttribute('min', today);
+    
+    // Set minimum date for check-out based on check-in
+    document.querySelector('input[name="checkin"]').addEventListener('change', function() {
+      const checkinDate = new Date(this.value);
+      checkinDate.setDate(checkinDate.getDate() + 1);
+      const minCheckout = checkinDate.toISOString().split('T')[0];
+      document.querySelector('input[name="checkout"]').setAttribute('min', minCheckout);
+    });
+  </script>
 </body>
 </html>
