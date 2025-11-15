@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 13, 2025 at 04:09 AM
+-- Generation Time: Nov 15, 2025 at 04:51 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -155,6 +155,46 @@ INSERT INTO `carousel` (`sr_no`, `image`) VALUES
 (4, 'bg1.jpg'),
 (5, 'bg2.jpg'),
 (6, 'bg3.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `coffee`
+--
+
+CREATE TABLE `coffee` (
+  `id` int(11) NOT NULL,
+  `name` varchar(150) NOT NULL,
+  `category` varchar(50) NOT NULL,
+  `price` int(11) NOT NULL,
+  `description` text DEFAULT NULL,
+  `image` varchar(150) NOT NULL,
+  `is_special` tinyint(1) NOT NULL DEFAULT 0,
+  `display_order` int(11) NOT NULL DEFAULT 0,
+  `status` tinyint(1) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `coffee`
+--
+
+INSERT INTO `coffee` (`id`, `name`, `category`, `price`, `description`, `image`, `is_special`, `display_order`, `status`) VALUES
+(1, 'Espresso', 'coffee', 30000, 'Cà phê Ý nguyên chất, đậm đà và thơm nồng', 'espresso.png', 0, 1, 1),
+(2, 'Americano', 'coffee', 35000, 'Espresso pha loãng với nước nóng, vị nhẹ dễ uống', 'americano.png', 0, 2, 1),
+(3, 'Cappuccino', 'coffee', 40000, 'Espresso với sữa nóng và lớp foam mịn màng', 'cappuccino.png', 1, 3, 1),
+(4, 'Latte', 'coffee', 45000, 'Espresso hòa quyện cùng sữa tươi nóng bồng bềnh', 'latte.png', 1, 4, 1),
+(5, 'Matcha Latte Tây Bắc', 'matcha', 50000, 'Sự kết hợp hoàn hảo Matcha vùng Tây Bắc và sữa', 'matcha.png', 0, 5, 1),
+(6, 'Cà Phê Sữa Đá', 'coffee', 30000, 'Cà phê phin truyền thống Việt Nam với sữa đặc', 'cf_sua_da.png', 1, 6, 1),
+(7, 'Bạc Xỉu', 'coffee', 32000, 'Cà phê sữa phiên bản ngọt ngào hơn', 'bac_xiu.png', 0, 7, 1),
+(8, 'Trà Đào Cam Sả', 'tea', 40000, 'Trà xanh kết hợp đào, cam tươi và sả thơm', 'tra_dao_cam_sa.png', 1, 8, 1),
+(9, 'Trà Sữa Trân Châu', 'milk tea', 45000, 'Trà sữa Đài Loan với trân châu đen dai ngon', 'tra_sua_tran_chau.png', 1, 9, 1),
+(10, 'Hồng Trà Sữa', 'milk tea', 35000, 'Trà sữa hương vị nguyên bản', 'hong_tra_sua.png', 0, 10, 1),
+(11, 'Matcha Tây Bắc Trân Châu Hoàng Kim', 'matcha', 45000, 'Matcha Tây Bắc kết hợp trân châu hoàng kim', 'matcha_tthk.png', 0, 11, 1),
+(12, 'Oolong Tứ Quý Sen', 'tea', 45000, 'Trà Oolong cùng sen vô cùng thơm ngon', 'oolong_sen4.png', 0, 12, 1),
+(13, 'Oolong Tứ Quý Sen (Nóng)', 'tea', 50000, 'Oolong Tứ Quý Sen phiên bản nóng', 'oolong_sen4_nong.png', 1, 13, 1),
+(14, 'Tiramisu', 'dessert', 55000, 'Bánh ngọt Ý với cà phê espresso và kem mascarpone', 'tiramisu.png', 1, 14, 1),
+(15, 'Cheesecake', 'dessert', 50000, 'Bánh phô mai New York kiểu truyền thống', 'cheesecake.png', 0, 15, 1),
+(16, 'Mousse Gấu Chocolate', 'dessert', 45000, 'Với vẻ ngoài đáng yêu và hương vị ngọt ngào, thơm béo nhất định bạn phải thử ít nhất 1 lần', 'mousse_gau.png', 0, 16, 1);
 
 -- --------------------------------------------------------
 
@@ -521,6 +561,12 @@ ALTER TABLE `carousel`
   ADD PRIMARY KEY (`sr_no`);
 
 --
+-- Indexes for table `coffee`
+--
+ALTER TABLE `coffee`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `contact_details`
 --
 ALTER TABLE `contact_details`
@@ -633,6 +679,12 @@ ALTER TABLE `booking_order`
 --
 ALTER TABLE `carousel`
   MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `coffee`
+--
+ALTER TABLE `coffee`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `contact_details`
