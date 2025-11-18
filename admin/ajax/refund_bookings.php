@@ -88,7 +88,7 @@
 
         if($res)
         {
-            $subject = "Thông Báo Hoàn Tiền / Refund Notification";
+            $subject = "Thong Bao Hoan Tien / Refund Notification";
             
             $message = "
                 <h3>Xin chào $row[name],</h3>
