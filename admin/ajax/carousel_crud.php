@@ -26,27 +26,54 @@
     }
   }
 
-  if(isset($_POST['get_carousel']))
-  {
+if(isset($_POST['get_carousel']))
+{
     $res = selectAll('carousel');
+    $path = CAROUSEL_IMG_PATH; // đảm bảo hằng này là URL tới folder ảnh, ví dụ: /uploads/carousel/
 
+    // Bắt đầu table + header
+    $data = "
+      <div class='table-responsive'>
+      <table class='table table-bordered text-center align-middle'>
+        <thead class='table-dark'>
+          <tr>
+            <th style='width:70%'>Ảnh</th>
+            <th style='width:30%'>Hành động</th>
+          </tr>
+        </thead>
+        <tbody>
+    ";
+
+    // Rows
     while($row = mysqli_fetch_assoc($res))
     {
-      $path = CAROUSEL_IMG_PATH;
-      echo <<<data
-        <div class="col-md-4 mb-3">
-          <div class="card bg-dark text-white">
-            <img src="$path$row[image]" class="card-img">
-            <div class="card-img-overlay text-end">
-              <button type="button" onclick="rem_image($row[sr_no])" class="btn btn-danger btn-sm shadow-none">
-                <i class="bi bi-trash"></i> Xoá
+        $image = $path . $row['image'];
+        $sr_no = $row['sr_no'];
+
+        $data .= "
+          <tr>
+            <td>
+              <img src='$image' class='img-fluid rounded' style='max-height:150px; object-fit:cover;'>
+            </td>
+            <td>
+              <button type='button' onclick='rem_image($sr_no)' class='btn btn-danger btn-sm shadow-none'>
+                <i class='bi bi-trash'></i> Xoá ảnh
               </button>
-            </div>
-          </div>
-        </div>
-      data;
+            </td>
+          </tr>
+        ";
     }
-  }
+
+    // Close tbody + table
+    $data .= "
+        </tbody>
+      </table>
+      </div>
+    ";
+
+    echo $data;
+}
+
 
   if(isset($_POST['rem_image']))
   {
