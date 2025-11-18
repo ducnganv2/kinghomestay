@@ -75,9 +75,9 @@
           <li class="mb-2"><i class="bi bi-clock me-2"></i>Thứ 2 - Thứ 6: 8:00 - 22:00</li>
           <li class="mb-2"><i class="bi bi-clock me-2"></i>Thứ 7 - CN: 9:00 - 23:00</li>
           <li class="mt-3">
-            <button class="btn btn-outline-light btn-sm">
+            <a href="rooms.php" class="btn btn-outline-light btn-sm">
               <i class="bi bi-calendar-check me-2"></i>Đặt phòng ngay
-            </button>
+            </a>
           </li>
         </ul>
       </div>

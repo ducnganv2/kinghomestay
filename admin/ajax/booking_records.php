@@ -9,13 +9,13 @@
   {
     $frm_data = filteration($_POST);
 
-    $limit = 2;
+    $limit = 5;
     $page = $frm_data['page'];
     $start = ($page-1) * $limit;
 
     $query = "SELECT bo.*, bd.* FROM `booking_order` bo
       INNER JOIN `booking_details` bd ON bo.booking_id = bd.booking_id
-      WHERE ((bo.booking_status='booked' AND bo.arrival=1) 
+      WHERE ((bo.booking_status='booked') 
       OR (bo.booking_status='cancelled' AND bo.refund=1)
       OR (bo.booking_status='payment failed')) 
       AND (bo.order_id LIKE ? OR bd.phonenum LIKE ? OR bd.user_name LIKE ?) 
@@ -40,8 +40,8 @@
     while($data = mysqli_fetch_assoc($limit_res))
     {
       $date = date("d-m-Y",strtotime($data['datentime']));
-      $checkin = date("d-m-Y",strtotime($data['check_in']));
-      $checkout = date("d-m-Y",strtotime($data['check_out']));
+      $checkin = date("d/m/Y",strtotime($data['check_in']));
+      $checkout = date("d/m/Y",strtotime($data['check_out']));
 
       if($data['booking_status']=='booked'){
         $status_bg = 'bg-success';
@@ -73,15 +73,10 @@
           <td>
             <b>Amount:</b> $data[trans_amt] VNĐ
             <br>
-            <b>Date:</b> $date
+            <b>Date:</b> $checkin - $checkout
           </td>
           <td>
             <span class='badge $status_bg'>$data[booking_status]</span>
-          </td>
-          <td>
-            <button type='button' class='btn btn-outline-success btn-sm fw-bold shadow-none'>
-              <i class='bi bi-file-earmark-arrow-down-fill'></i>
-            </button>
           </td>
         </tr>
       ";

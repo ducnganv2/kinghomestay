@@ -71,11 +71,47 @@
   {
     $frm_data = filteration($_POST);
 
-    $query = "UPDATE `booking_order` SET `refund`=? WHERE `booking_id`=?";
-    $values = [1,$frm_data['booking_id']];
-    $res = update($query,$values,'ii');
+    $query_info = "SELECT bo.order_id, bo.trans_amt, uc.email, uc.name 
+      FROM `booking_order` bo
+      INNER JOIN `user_cred` uc ON bo.user_id = uc.id 
+      WHERE bo.booking_id = ?";
+      
+    $res_info = select($query_info, [$frm_data['booking_id']], 'i');
+    
+    if(mysqli_num_rows($res_info) > 0)
+    {
+        $row = mysqli_fetch_assoc($res_info);
+        
+        $query = "UPDATE `booking_order` SET `refund`=? WHERE `booking_id`=?";
+        $values = [1, $frm_data['booking_id']];
+        $res = update($query, $values, 'ii');
 
-    echo $res;
+        if($res)
+        {
+            $subject = "Thông Báo Hoàn Tiền / Refund Notification";
+            
+            $message = "
+                <h3>Xin chào $row[name],</h3>
+                <p>Chúng tôi đã thực hiện hoàn tiền cho đơn đặt phòng của bạn.</p>
+                <p><b>Mã đơn hàng:</b> $row[order_id]</p>
+                <p><b>Số tiền đã hoàn:</b> ".number_format($row['trans_amt'])." VNĐ</p>
+                <p>Tiền sẽ về tài khoản của bạn trong vòng 3-5 ngày làm việc tùy thuộc vào ngân hàng.</p>
+                <br>
+                <p>Cảm ơn bạn đã quan tâm đến King Homestay!</p>
+            ";
+
+            send_mail($row['email'], $subject, $message);
+
+            echo 1; 
+        }
+        else
+        {
+            echo 0; 
+        }
+    }
+    else
+    {
+        echo 0; 
+    }
   }
-
 ?>

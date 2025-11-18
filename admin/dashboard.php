@@ -78,8 +78,7 @@
     $current_users = mysqli_fetch_assoc(mysqli_query($con,"SELECT 
       COUNT(id) AS `total`,
       COUNT(CASE WHEN `status`=1 THEN 1 END) AS `active`,
-      COUNT(CASE WHEN `status`=0 THEN 1 END) AS `inactive`,
-      COUNT(CASE WHEN `is_verified`=0 THEN 1 END) AS `unverified`
+      COUNT(CASE WHEN `status`=0 THEN 1 END) AS `inactive`
       FROM `user_cred`")); 
   ?>
 
@@ -207,7 +206,7 @@
         </div> <h5 class="mb-3 fw-bold">Quản lý người dùng</h5>
         <div class="row g-4">
           
-          <div class="col-xl-3 col-md-6">
+          <div class="col-xl-4 col-md-6">
             <div class="card simple-stat-card border-left-secondary">
               <div class="card-body">
                 <div class="d-flex align-items-center justify-content-between">
@@ -221,7 +220,7 @@
             </div>
           </div>
 
-          <div class="col-xl-3 col-md-6">
+          <div class="col-xl-4 col-md-6">
             <div class="card simple-stat-card border-left-green">
               <div class="card-body">
                 <div class="d-flex align-items-center justify-content-between">
@@ -235,7 +234,7 @@
             </div>
           </div>
 
-          <div class="col-xl-3 col-md-6">
+          <div class="col-xl-4 col-md-6">
             <div class="card simple-stat-card border-left-yellow">
               <div class="card-body">
                 <div class="d-flex align-items-center justify-content-between">
@@ -248,19 +247,6 @@
               </div>
             </div>
           </div>
-
-          <div class="col-xl-3 col-md-6">
-            <div class="card simple-stat-card border-left-red">
-              <div class="card-body">
-                <div class="d-flex align-items-center justify-content-between">
-                  <div>
-                    <h6 class="text-muted text-uppercase mb-2">Chưa xác thực</h6>
-                    <h2 class="fw-bold mb-0"><?php echo $current_users['unverified'] ?></h2>
-                  </div>
-                  <i class="bi bi-exclamation-circle stat-icon text-danger"></i>
-                </div>
-              </div>
-            </div>
           </div>
 
         </div> </div>
