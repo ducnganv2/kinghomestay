@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 15, 2025 at 04:51 AM
+-- Generation Time: Nov 18, 2025 at 02:33 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -97,8 +97,14 @@ INSERT INTO `booking_details` (`sr_no`, `booking_id`, `room_name`, `price`, `tot
 (2, 2, 'Phòng Cao Cấp', 2000000, 4000000, 'a2', 'amey', '123', 'ad'),
 (3, 3, 'Phòng Tổng Thống', 10000000, 10000000, NULL, 'amey', '123', 'ad'),
 (21, 21, 'Phòng Cơ Bản 3', 1200000, 7200000, NULL, 'Hùng', '12345', 'qweqweqweqwe'),
-(22, 22, 'Phòng Cao Cấp', 2000000, 4000000, NULL, 'Hùng', '12345', 'qweqweqweqwe'),
-(23, 23, 'Phòng Cơ Bản 3', 1200000, 18000000, NULL, 'Trung', '123', 'ad');
+(22, 22, 'Phòng Cao Cấp', 2000000, 4000000, '1', 'Hùng', '12345', 'qweqweqweqwe'),
+(23, 23, 'Phòng Cơ Bản 3', 1200000, 18000000, NULL, 'Trung', '123', 'ad'),
+(24, 24, 'Phòng Biển', 790000, 790000, NULL, 'hung', '123456789', '123 B'),
+(25, 25, 'Phòng chill', 1750000, 3500000, NULL, 'hung', '123456789', '123 B'),
+(26, 26, 'Phòng Mây', 1390000, 1390000, NULL, 'hung', '123456789', '123 B'),
+(27, 27, 'Phòng Mây', 1390000, 2780000, NULL, 'hung', '123456789', '123 B'),
+(28, 28, 'Phòng Biển', 790000, 49770000, NULL, 'hung', '23456789', '123 B'),
+(29, 29, 'Phòng chill', 1750000, 1750000, NULL, 'hung', '126789', '123 BA');
 
 -- --------------------------------------------------------
 
@@ -133,8 +139,14 @@ INSERT INTO `booking_order` (`booking_id`, `user_id`, `room_id`, `check_in`, `ch
 (2, 2, 3, '2024-12-03', '2024-12-04', 1, NULL, 'booked', 'ORD_24215693', '20220720111212800110168128204225279', 600, 'TXN_SUCCESS', 'Txn Success', NULL, '2024-11-30 02:14:44'),
 (3, 2, 3, '2024-12-13', '2024-12-17', 0, 1, 'cancelled', 'ORD_26312547', '20220720111212800110168165603901976', 1800, 'TXN_SUCCESS', 'Txn Success', NULL, '2024-11-30 02:19:00'),
 (21, 7, 3, '2024-12-01', '2024-12-07', 0, 0, 'cancelled', 'ORD_74731476', NULL, NULL, 'TXN_SUCCESS', NULL, NULL, '2024-12-01 11:25:29'),
-(22, 7, 4, '2024-12-29', '2024-12-31', 0, NULL, 'booked', 'ORD_72382450', NULL, NULL, 'TXN_SUCCESS', NULL, NULL, '2024-12-01 11:32:34'),
-(23, 2, 3, '2025-11-12', '2025-11-27', 0, NULL, 'pending', 'ORD_23327895', NULL, NULL, 'pending', NULL, NULL, '2025-11-03 10:40:57');
+(22, 7, 4, '2024-12-29', '2024-12-31', 1, NULL, 'booked', 'ORD_72382450', NULL, NULL, 'TXN_SUCCESS', NULL, 0, '2024-12-01 11:32:34'),
+(23, 2, 3, '2025-11-12', '2025-11-27', 0, NULL, 'pending', 'ORD_23327895', NULL, NULL, 'pending', NULL, NULL, '2025-11-03 10:40:57'),
+(24, 20, 6, '2025-11-15', '2025-11-16', 0, NULL, 'pending', 'ORD_203609010', NULL, NULL, 'pending', NULL, NULL, '2025-11-15 16:58:59'),
+(25, 20, 7, '2025-11-16', '2025-11-18', 0, NULL, 'pending', 'ORD_201220810', NULL, NULL, 'pending', NULL, NULL, '2025-11-16 14:48:15'),
+(26, 20, 3, '2025-11-16', '2025-11-17', 0, NULL, 'pending', 'ORD_201605973', NULL, NULL, 'pending', NULL, NULL, '2025-11-16 14:51:00'),
+(27, 20, 3, '2025-12-16', '2025-12-18', 0, NULL, 'pending', 'ORD_203224893', NULL, NULL, 'pending', NULL, NULL, '2025-11-16 14:59:48'),
+(28, 22, 6, '2025-12-16', '2026-02-17', 0, NULL, 'pending', 'ORD_224549668', NULL, NULL, 'pending', NULL, NULL, '2025-11-16 15:32:05'),
+(29, 24, 7, '2025-11-19', '2025-11-20', 0, NULL, 'pending', 'ORD_245478633', NULL, NULL, 'pending', NULL, NULL, '2025-11-18 20:31:04');
 
 -- --------------------------------------------------------
 
@@ -267,7 +279,8 @@ INSERT INTO `features` (`id`, `name`) VALUES
 (15, 'Nhà Bếp'),
 (17, 'Ghế Sofa'),
 (18, 'View Biển'),
-(19, 'Đèn Chùm');
+(19, 'Đèn Chùm'),
+(21, 'Khu nướng');
 
 -- --------------------------------------------------------
 
@@ -291,13 +304,11 @@ CREATE TABLE `rating_review` (
 --
 
 INSERT INTO `rating_review` (`sr_no`, `booking_id`, `room_id`, `user_id`, `rating`, `review`, `seen`, `datentime`) VALUES
-(4, 21, 5, 2, 5, 'Dịch vụ tuyệt vời, không gian đẳng cấp và được trang bị đầy đủ tiện nghi hiện đại. Rất phù hợp cho những dịp đặc biệt hoặc nghỉ dưỡng cao cấp.', 1, '2022-08-20 00:22:25'),
-(5, 22, 4, 5, 3, 'Chất lượng dịch vụ xuất sắc, phòng rộng rãi, đầy đủ tiện nghi. Không gian sang trọng và thoải mái, rất đáng giá cho kỳ nghỉ.', 1, '2022-08-20 00:22:30'),
 (6, 1, 3, 6, 4, 'Tương tự như “Phòng Cơ bản”, nhưng một số chi tiết như ánh sáng hoặc nội thất cần được cải thiện để mang lại trải nghiệm tốt hơn.', 1, '2022-08-20 00:22:34'),
 (8, 21, 5, 7, 5, 'Nhân viên phục vụ rất chuyên nghiệp, mang lại cảm giác thoải mái và đáng nhớ cho kỳ nghỉ.', 1, '2022-08-20 00:22:25'),
 (9, 22, 3, 8, 4, 'Dịch vụ ổn định, phòng sạch sẽ và gọn gàng. Tuy nhiên, tiện nghi chỉ ở mức cơ bản, phù hợp cho những ai cần chỗ ở ngắn hạn.', 1, '2022-08-20 00:22:34'),
 (10, 1, 6, 2, 5, 'Phòng đẳng cấp, dịch vụ chu đáo, không gian sang trọng. Tuy nhiên, giá thành hơi cao so với những gì nhận được.', 1, '2022-08-20 00:22:34'),
-(12, 1, 3, 7, 5, 'Rất tốt, đỉnh nóc kịch trần, bay phấp pha phấp phới.\r\nHãy gửi voucher discount về cho tôi vì đã để lại bình luận tốt!', 0, '2024-12-01 11:33:41');
+(12, 1, 3, 7, 5, 'Rất tốt, đỉnh nóc kịch trần, bay phấp pha phấp phới.\r\nHãy gửi voucher discount về cho tôi vì đã để lại bình luận tốt!', 1, '2024-12-01 11:33:41');
 
 -- --------------------------------------------------------
 
@@ -328,7 +339,8 @@ INSERT INTO `rooms` (`id`, `name`, `area`, `price`, `quantity`, `adult`, `childr
 (3, 'Phòng Mây', 45, 1390000, 1, 2, 1, 'Tận hưởng khoảnh khắc bình yên trong căn phòng có ban công hướng biển tuyệt đẹp, nơi bạn có thể đón bình minh mỗi sáng. Phòng được thiết kế  với nội thất gỗ ấm cúng, cùng đầy đủ tiện nghi hiện đại. Không gian mang đến cảm giác gần gũi và thư giãn tối đa cho cả gia đình.', 1, 0),
 (4, 'Phòng Gác', 18, 650000, 1, 2, 1, 'Không gian gác mái được thiết kế với trần gỗ và ánh sáng vàng ấm, mang hơi thở cổ điển và gần gũi. Phòng được trang bị đầy đủ tiện nghi, là lựa chọn hoàn hảo cho du khách yêu thích phong cách mộc mạc và yên bình.', 1, 0),
 (5, 'Phòng Ký Ức', 50, 1390000, 1, 2, 1, 'Tận hưởng không gian thanh lịch trong căn phòng thiết kế phong cách Pháp cổ, nơi những chi tiết nội thất tinh tế mang đến vẻ đẹp cổ điển và sang trọng. Cửa sổ lớn đón ánh sáng tự nhiên, tạo cảm giác ấm cúng và thư giãn. Phòng được trang bị đầy đủ tiện nghi hiện đại, là lựa chọn lý tưởng để cả gia đình nghỉ ngơi và tận hưởng những khoảnh khắc bình y', 1, 0),
-(6, 'Phòng Biển', 28, 790000, 1, 6, 3, 'Thư giãn trong căn phòng tầm trung gọn gàng và tiện nghi, với nội thất cơ bản phù hợp nhu cầu nghỉ ngơi của cả gia đình. Cửa sổ lớn giúp không gian luôn thoáng sáng, tạo cảm giác dễ chịu và gần gũi. Phòng đầy đủ các tiện nghi cần thiết để bạn có kỳ nghỉ thoải mái mà không quá cầu kỳ.', 1, 0);
+(6, 'Phòng Biển', 28, 790000, 1, 6, 3, 'Thư giãn trong căn phòng tầm trung gọn gàng và tiện nghi, với nội thất cơ bản phù hợp nhu cầu nghỉ ngơi của cả gia đình. Cửa sổ lớn giúp không gian luôn thoáng sáng, tạo cảm giác dễ chịu và gần gũi. Phòng đầy đủ các tiện nghi cần thiết để bạn có kỳ nghỉ thoải mái mà không quá cầu kỳ.', 1, 0),
+(7, 'Phòng chill', 30, 1750000, 2, 2, 1, 'Phòng cực kì chill dành cho các cặp đôi', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -357,10 +369,14 @@ INSERT INTO `room_facilities` (`sr_no`, `room_id`, `facilities_id`) VALUES
 (159, 5, 17),
 (160, 5, 18),
 (161, 5, 19),
-(162, 3, 13),
-(163, 3, 14),
-(164, 3, 15),
-(165, 3, 19);
+(166, 3, 13),
+(167, 3, 14),
+(168, 3, 15),
+(169, 3, 19),
+(170, 7, 13),
+(171, 7, 14),
+(172, 7, 18),
+(173, 7, 19);
 
 -- --------------------------------------------------------
 
@@ -387,10 +403,15 @@ INSERT INTO `room_features` (`sr_no`, `room_id`, `features_id`) VALUES
 (115, 5, 13),
 (116, 5, 17),
 (117, 5, 18),
-(118, 3, 13),
-(119, 3, 14),
-(120, 3, 17),
-(121, 3, 18);
+(122, 3, 13),
+(123, 3, 14),
+(124, 3, 15),
+(125, 3, 17),
+(126, 3, 18),
+(127, 7, 13),
+(128, 7, 14),
+(129, 7, 17),
+(130, 7, 19);
 
 -- --------------------------------------------------------
 
@@ -414,7 +435,9 @@ INSERT INTO `room_images` (`sr_no`, `room_id`, `image`, `thumb`) VALUES
 (34, 4, 'img2.jpg', 1),
 (36, 6, 'img3.jpg', 1),
 (37, 3, 'img4.jpg', 1),
-(38, 5, 'img5.jpg', 1);
+(38, 5, 'img5.jpg', 1),
+(39, 3, 'anhphong.jpg', 0),
+(40, 7, 'anhphong.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -478,7 +501,6 @@ CREATE TABLE `user_cred` (
   `dob` date NOT NULL,
   `profile` varchar(100) NOT NULL DEFAULT 'avt.jpg',
   `password` varchar(200) NOT NULL,
-  `is_verified` int(11) NOT NULL DEFAULT 0,
   `token` varchar(200) DEFAULT NULL,
   `t_expire` date DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT 1,
@@ -489,15 +511,15 @@ CREATE TABLE `user_cred` (
 -- Dumping data for table `user_cred`
 --
 
-INSERT INTO `user_cred` (`id`, `name`, `email`, `address`, `phonenum`, `pincode`, `dob`, `profile`, `password`, `is_verified`, `token`, `t_expire`, `status`, `datentime`) VALUES
-(2, 'Trung', 'trung@gmail.com', 'ad', '123', 123324, '2022-06-12', 'chill-guy2.png', '12345', 1, NULL, NULL, 1, '2024-11-30 16:05:59'),
-(5, 'Huy', 'huy@gmail.com', 'asd', '1234', 123, '2005-12-30', 'chill-guy3.png', '12345', 1, '24ffd287a4c2eda5f2b424be2824f997', NULL, 1, '2024-11-30 02:37:19'),
-(6, 'Hiếu', 'hieu@gmail.com', 'asd', '1123', 123, '2005-12-22', 'chill-guy6.png', '12345', 1, 'ef6dc7ba39cf4bf844244d3ef927a3e7', NULL, 1, '2024-11-30 02:40:42'),
-(7, 'Hùng', 'hung@gmail.com', 'qweqweqweqwe', '12345', 123, '1995-12-28', 'chill-guy1.png', '12345', 0, '5c9f04397ff3e693f7cbfccea1044483', NULL, 1, '2024-11-30 02:42:37'),
-(8, 'Đạt', 'dat@gmail.com', 'a', '12', 1, '2005-12-01', 'chill-guy5.png', '12345', 0, '250dd45640f7d810313b27e758a267af', NULL, 1, '2024-11-30 02:55:39'),
-(9, 'trung', '123123@asdasdasd', '1123123123', '1231111111111', 123, '2222-02-12', 'chill-guy.png', '123', 0, NULL, NULL, 1, '2024-12-01 11:56:05'),
-(11, 'test', 'test@gmail.com', '123123', '1231231455555', 123123, '1111-11-11', 'chill-guy.png', '12345', 0, NULL, NULL, 1, '2024-12-01 13:05:25'),
-(19, 'Huy', 'huynhhuy.079996@gmail.com', '41/21 Lang Liêu', '0385151309', 123, '2004-09-07', 'avt.jpg', '12345', 0, NULL, NULL, 1, '2025-11-13 08:58:46');
+INSERT INTO `user_cred` (`id`, `name`, `email`, `address`, `phonenum`, `pincode`, `dob`, `profile`, `password`, `token`, `t_expire`, `status`, `datentime`) VALUES
+(2, 'Trung', 'trung@gmail.com', 'ad', '123', 123324, '2022-06-12', 'chill-guy2.png', '12345', NULL, NULL, 1, '2024-11-30 16:05:59'),
+(6, 'Hiếu', 'hieu@gmail.com', 'asd', '1123', 123, '2005-12-22', 'chill-guy6.png', '12345', 'ef6dc7ba39cf4bf844244d3ef927a3e7', NULL, 1, '2024-11-30 02:40:42'),
+(7, 'Hùng', 'hung@gmail.com', 'qweqweqweqwe', '12345', 123, '1995-12-28', 'chill-guy1.png', '12345', '5c9f04397ff3e693f7cbfccea1044483', NULL, 0, '2024-11-30 02:42:37'),
+(8, 'Đạt', 'dat@gmail.com', 'a', '12', 1, '2005-12-01', 'chill-guy5.png', '12345', '250dd45640f7d810313b27e758a267af', NULL, 1, '2024-11-30 02:55:39'),
+(19, 'Huy', 'huynhhuy.079996@gmail.com', '41/21 Lang Liêu', '0385151309', 123, '2004-09-07', 'avt.jpg', '12345', NULL, NULL, 0, '2025-11-13 08:58:46'),
+(20, 'hung', 'hoxuanhung2802@gmail.com', '123 B', '123456789', 280204, '2004-02-28', 'avt.jpg', '123', NULL, NULL, 0, '2025-11-15 16:58:38'),
+(22, 'hung', 'xuanhung2802@gmail.com', '123 B', '23456789', 280204, '2000-12-12', 'avt.jpg', '123', NULL, NULL, 1, '2025-11-16 15:31:38'),
+(24, 'hung', 'hung2802@gmail.com', '123 BA', '126789', 123456, '2020-12-12', 'avt.jpg', '123', NULL, NULL, 1, '2025-11-18 20:30:27');
 
 -- --------------------------------------------------------
 
@@ -666,13 +688,13 @@ ALTER TABLE `admin_cred`
 -- AUTO_INCREMENT for table `booking_details`
 --
 ALTER TABLE `booking_details`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `booking_order`
 --
 ALTER TABLE `booking_order`
-  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `carousel`
@@ -696,13 +718,13 @@ ALTER TABLE `contact_details`
 -- AUTO_INCREMENT for table `facilities`
 --
 ALTER TABLE `facilities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `features`
 --
 ALTER TABLE `features`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `rating_review`
@@ -714,25 +736,25 @@ ALTER TABLE `rating_review`
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `room_facilities`
 --
 ALTER TABLE `room_facilities`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=166;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=174;
 
 --
 -- AUTO_INCREMENT for table `room_features`
 --
 ALTER TABLE `room_features`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
 
 --
 -- AUTO_INCREMENT for table `room_images`
 --
 ALTER TABLE `room_images`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `settings`
@@ -750,7 +772,7 @@ ALTER TABLE `team_details`
 -- AUTO_INCREMENT for table `user_cred`
 --
 ALTER TABLE `user_cred`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `user_queries`
