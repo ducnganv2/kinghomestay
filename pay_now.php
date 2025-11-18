@@ -16,23 +16,21 @@
     $ORDER_ID = 'ORD_'.$_SESSION['uId'].random_int(11111,9999999);    
     $CUST_ID = $_SESSION['uId'];
     $TXN_AMOUNT = $_SESSION['room']['payment'];
-    // Insert payment data into database
-
-    $frm_data = filteration($_POST);
-
-    $query1 = "INSERT INTO `booking_order`(`user_id`, `room_id`, `check_in`, `check_out`,`order_id`) VALUES (?,?,?,?,?)";
-
-    insert($query1,[$CUST_ID,$_SESSION['room']['id'],$frm_data['checkin'],
-      $frm_data['checkout'],$ORDER_ID],'issss');
     
-    $booking_id = mysqli_insert_id($con);
-
-    $query2 = "INSERT INTO `booking_details`(`booking_id`, `room_name`, `price`, `total_pay`,
-      `user_name`, `phonenum`, `address`) VALUES (?,?,?,?,?,?,?)";
-
-    insert($query2,[$booking_id,$_SESSION['room']['name'],$_SESSION['room']['price'],
-      $TXN_AMOUNT,$frm_data['name'],$frm_data['phonenum'],$frm_data['address']],'issssss');
+    // Lưu thông tin vào session để dùng sau
+    $_SESSION['pending_order'] = [
+      'order_id' => $ORDER_ID,
+      'user_id' => $CUST_ID,
+      'room_id' => $_SESSION['room']['id'],
+      'amount' => $TXN_AMOUNT,
+      'checkin' => filteration($_POST)['checkin'],
+      'checkout' => filteration($_POST)['checkout'],
+      'name' => filteration($_POST)['name'],
+      'phonenum' => filteration($_POST)['phonenum'],
+      'address' => filteration($_POST)['address']
+    ];
+    
+    // Redirect đến trang demo thanh toán
+    redirect('payment_demo.php');
   }
-
-  redirect('bookings.php');
 ?>
