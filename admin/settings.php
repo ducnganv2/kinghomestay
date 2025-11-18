@@ -65,23 +65,6 @@
           </div>
         </div>
 
-        <!-- Shutdown section -->
-        <div class="card border-0 shadow-sm mb-4">
-          <div class="card-body">
-            <div class="d-flex align-items-center justify-content-between mb-3">
-              <h5 class="card-title m-0">Bảo trì hệ thống</h5>
-              <div class="form-check form-switch">
-                <form>
-                  <input onchange="upd_shutdown(this.value)" class="form-check-input" type="checkbox" id="shutdown-toggle">
-                </form>
-              </div>
-            </div>
-            <p class="card-text">
-              Người dùng sẽ không thể đặt phòng khi hệ thống đang trong trạng thái bảo trì.
-            </p>
-          </div>
-        </div>
-
         <!-- Contact details section -->
         <div class="card border-0 shadow-sm mb-4">
           <div class="card-body">
@@ -201,23 +184,6 @@
                 </div>
               </div>
             </form>
-          </div>
-        </div>
-
-        <!-- Management Team section -->
-
-        <div class="card border-0 shadow-sm mb-4">
-          <div class="card-body">
-            <div class="d-flex align-items-center justify-content-between mb-3">
-              <h5 class="card-title m-0">Đội ngũ quản lý</h5>
-              <button type="button" class="btn btn-dark shadow-none btn-sm" data-bs-toggle="modal" data-bs-target="#team-s">
-                <i class="bi bi-plus-square"></i> Thêm
-              </button>
-            </div>
-
-            <div class="row" id="team-data">
-            </div>
-
           </div>
         </div>
 

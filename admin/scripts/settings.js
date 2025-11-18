@@ -154,12 +154,12 @@ function upd_contacts()
     modal.hide();
     if(this.responseText == 1)
     {
-      alert('success','Changes saved!');
+      alert('success','Thay đổi đã được lưu!');
       get_contacts();
     }
     else
     {
-      alert('error','No changes made!');
+      alert('error','Không có thay đổi nào được thực hiện!');
     }
   }
 
@@ -187,13 +187,13 @@ function add_member()
     modal.hide();
 
     if(this.responseText == 'inv_img'){
-      alert('error','Only JPG and PNG images are allowed!');
+      alert('error','Anh không hợp lệ!');
     }
     else if(this.responseText == 'inv_size'){
-      alert('error','Image should be less than 2MB!');
+      alert('error','Ảnh vượt quá kích thước cho phép!');
     }
     else if(this.responseText == 'upd_failed'){
-      alert('error','Image upload failed. Server Down!');
+      alert('error','Ảnh không thể tải lên. Vui lòng thử lại!');
     }
     else{
       alert('success','New member added!');
@@ -227,11 +227,11 @@ function rem_member(val)
 
   xhr.onload = function(){
     if(this.responseText==1){
-      alert('success','Member removed!');
+      alert('success','Đã xóa thành viên!');
       get_members();
     }
     else{
-      alert('error','Server down!');
+      alert('error','Xóa thành viên thất bại! Vui lòng thử lại sau!');
     }
   }
 
