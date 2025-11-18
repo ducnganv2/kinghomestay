@@ -88,13 +88,13 @@
               <table class="table table-hover border">
                 <thead>
                   <tr class="bg-dark text-light">
-                    <th scope="col">#</th>
-                    <th scope="col">Room Name</th>
-                    <th scope="col">User Name</th>
-                    <th scope="col">Rating</th>
-                    <th scope="col" width="30%">Review</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">STT</th>
+                    <th scope="col">Tên Phòng</th>
+                    <th scope="col">Tên người dùng</th>
+                    <th scope="col">Đánh giá</th>
+                    <th scope="col" width="30%">Nội dung Đánh giá</th>
+                    <th scope="col">Ngày</th>
+                    <th scope="col">Hành động</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -115,7 +115,7 @@
                       if($row['seen']!=1){
                         $seen = "<a href='?seen=$row[sr_no]' class='btn btn-sm rounded-pill btn-primary mb-2'>Mark as read</a> <br>";
                       }
-                      $seen.="<a href='?del=$row[sr_no]' class='btn btn-sm rounded-pill btn-danger'>Delete</a>";
+                      $seen.="<a href='?del=$row[sr_no]' class='btn btn-sm rounded-pill btn-danger'>Xoá</a>";
 
                       echo<<<query
                         <tr>
