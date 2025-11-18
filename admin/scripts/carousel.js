@@ -32,7 +32,7 @@ function add_image()
       alert('error','Ảnh không thể tải lên. Vui lòng thử lại!');
     }
     else{
-      alert('success','New image added!');
+      alert('success','Ảnh đã được tải lên thành công!');
       carousel_picture_inp.value='';
       get_carousel();
     }
@@ -62,7 +62,7 @@ function rem_image(val)
 
   xhr.onload = function(){
     if(this.responseText==1){
-      alert('success','Đã xấu hình ảnh!');
+      alert('success','Đã xoá hình ảnh!');
       get_carousel();
     }
     else{
