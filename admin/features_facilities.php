@@ -35,9 +35,9 @@
               <table class="table table-hover border">
                 <thead>
                   <tr class="bg-dark text-light">
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">STT</th>
+                    <th scope="col">Tên không gian</th>
+                    <th scope="col">Hành động</th>
                   </tr>
                 </thead>
                 <tbody id="features-data">                 
@@ -62,11 +62,11 @@
               <table class="table table-hover border">
                 <thead>
                   <tr class="bg-dark text-light">
-                    <th scope="col">#</th>
+                    <th scope="col">STT</th>
                     <th scope="col">Icon</th>
-                    <th scope="col">Name</th>
-                    <th scope="col" width="40%">Description</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">Tên tiện ích</th>
+                    <th scope="col" width="40%">Mô tả</th>
+                    <th scope="col">Hành động</th>
                   </tr>
                 </thead>
                 <tbody id="facilities-data">                 
