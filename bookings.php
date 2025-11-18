@@ -94,7 +94,7 @@
                   <b>Check out: </b> $checkout
                 </p>
                 <p>
-                  <b>Amount: </b> $data[price] VND <br>
+                  <b>Amount: </b> $data[trans_amt] VND <br>
                   <b>Order ID: </b> $data[order_id] <br>
                   <b>Date: </b> $date
                 </p>

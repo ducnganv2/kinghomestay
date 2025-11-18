@@ -13,16 +13,17 @@
 
   if($status == 'success'){
     // Lưu vào database
-    $query1 = "INSERT INTO `booking_order`(`user_id`, `room_id`, `check_in`, `check_out`, `order_id`, `booking_status`) 
-               VALUES (?,?,?,?,?,'booked')";
+    $query1 = "INSERT INTO `booking_order`(`user_id`, `room_id`, `check_in`, `check_out`, `order_id`, `trans_amt`, `booking_status`) 
+               VALUES (?,?,?,?,?,?,'booked')";
 
     insert($query1, [
       $order['user_id'],
       $order['room_id'],
       $order['checkin'],
       $order['checkout'],
-      $order['order_id']
-    ], 'iisss');
+      $order['order_id'],
+      $order['amount']
+    ], 'iisssd');
     
     $booking_id = mysqli_insert_id($con);
 

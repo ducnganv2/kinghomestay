@@ -3,7 +3,7 @@
   require('../admin/inc/db_config.php');
   require('../admin/inc/essentials.php');
 
-  
+   session_start();
 
   if(isset($_POST['check_availability']))
   {
@@ -37,7 +37,6 @@
       echo $result;
     }
     else{
-      session_start();
 
       // run query to check room is available or not 
 
