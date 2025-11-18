@@ -18,13 +18,6 @@
         <i class='bi bi-trash'></i> 
       </button>";
 
-      $verified = "<span class='badge bg-warning'><i class='bi bi-x-lg'></i></span>";
-
-      if($row['is_verified']){
-        $verified = "<span class='badge bg-success'><i class='bi bi-check-lg'></i></span>";
-        $del_btn = ""; 
-      }
-
       $status = "<button onclick='toggle_status($row[id],0)' class='btn btn-dark btn-sm shadow-none'>
         active
       </button>";
@@ -49,7 +42,6 @@
           <td>$row[phonenum]</td>
           <td>$row[address] | $row[pincode]</td>
           <td>$row[dob]</td>
-          <td>$verified</td>
           <td>$status</td>
           <td>$date</td>
           <td>$del_btn</td>
@@ -80,7 +72,7 @@
   {
     $frm_data = filteration($_POST);
 
-    $res = delete("DELETE FROM `user_cred` WHERE `id`=? AND `is_verified`=?",[$frm_data['user_id'],0],'ii');
+    $res = delete("DELETE FROM `user_cred` WHERE `id`=?",[$frm_data['user_id']],'i');
 
     if($res){
       echo 1;
@@ -111,11 +103,6 @@
 
       $verified = "<span class='badge bg-warning'><i class='bi bi-x-lg'></i></span>";
 
-      if($row['is_verified']){
-        $verified = "<span class='badge bg-success'><i class='bi bi-check-lg'></i></span>";
-        $del_btn = ""; 
-      }
-
       $status = "<button onclick='toggle_status($row[id],0)' class='btn btn-dark btn-sm shadow-none'>
         active
       </button>";
@@ -140,7 +127,6 @@
           <td>$row[phonenum]</td>
           <td>$row[address] | $row[pincode]</td>
           <td>$row[dob]</td>
-          <td>$verified</td>
           <td>$status</td>
           <td>$date</td>
           <td>$del_btn</td>
