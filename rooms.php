@@ -202,6 +202,7 @@
     }
 
 
+    
     window.onload = function(){
       fetch_rooms();
     }
