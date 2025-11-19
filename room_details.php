@@ -166,7 +166,7 @@
                 <div class="mb-3">
                   <h6 class="mb-1">Area</h6>
                   <span class='badge rounded-pill bg-light text-dark text-wrap me-1 mb-1'>
-                    $room_data[area] m2
+                    $room_data[area] m²
                   </span>
                 </div>
               area;
