@@ -13,7 +13,7 @@ function get_bookings(search='')
 
 function cancel_booking(id) 
 {
-  if(confirm("Are you sure, you want to cancel this booking?"))
+  if(confirm("Bạn có chắc chắn muốn hủy đặt phòng này không?"))
   {
     let data = new FormData();
     data.append('booking_id',id);
@@ -25,11 +25,11 @@ function cancel_booking(id)
     xhr.onload = function()
     {
       if(this.responseText == 1){
-        alert('success','Booking Cancelled!');
+        alert('success','Đã hủy đặt phòng thành công!');
         get_bookings();
       }
       else{
-        alert('error','Server Down!');
+        alert('error','Lỗi Server! Vui lòng thử lại sau.');
       }
     }
 

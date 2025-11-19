@@ -14,7 +14,7 @@ function get_bookings(search='')
 
 function refund_booking(id) 
 {
-  if(confirm("Refund money for this booking?"))
+  if(confirm("Bạn có chắc chắn muốn hoàn tiền cho đơn đặt phòng này không?"))
   {
     let data = new FormData();
     data.append('booking_id',id);
@@ -26,11 +26,11 @@ function refund_booking(id)
     xhr.onload = function()
     {
       if(this.responseText == 1){
-        alert('success','Money Refunded!');
+        alert('success','Hoàn tiền thành công!');
         get_bookings();
       }
       else{
-        alert('error','Server Down!');
+        alert('error','Lỗi Server! Hoàn tiền không thành công.');
       }
     }
 

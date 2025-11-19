@@ -182,6 +182,9 @@
           else if(data.status == 'unavailable'){
             pay_info.innerText = "Room not available for this check-in date!";
           }
+          else if(data.status == 'fully_booked_overlap'){ 
+            pay_info.innerText = data.message; 
+          }
           else{
             pay_info.innerHTML = "No. of Days: "+data.days+"<br>Total Amount to Pay: "+data.payment+" VND";
             pay_info.classList.replace('text-danger','text-dark');
