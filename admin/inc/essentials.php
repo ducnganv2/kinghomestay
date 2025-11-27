@@ -62,11 +62,15 @@
 
   function deleteImage($image, $folder)
   {
+    if($image == 'avt.jpg'){
+      
+        return true; 
+    }
     if(unlink(UPLOAD_IMAGE_PATH.$folder.$image)){
-      return true;
+        return true;
     }
     else{
-      return false;
+        return false;
     }
   }
 

@@ -23,28 +23,34 @@ if(isset($_POST['register'])) {
         exit;
     }
 
-    // Insert user information into the database
-    $query = "INSERT INTO `user_cred` (`name`, `email`, `phonenum`, `address`, `pincode`, `dob`, `password`) VALUES (?, ?, ?, ?, ?, ?, ?)";
-    $values = [$data['name'], $data['email'], $data['phonenum'], $data['address'], $data['pincode'], $data['dob'], $data['pass']];
-    if(insert($query, $values, 'sssssss')) {
-        echo 'registration_success';
-    } else {
-        echo 'registration_failed';
-    }
-    exit;
-
     // upload user image to server
 
-    $img = uploadUserImage($_FILES['profile']);
-
-    if($img == 'inv_img'){
-      echo 'inv_img';
-      exit;
+    $img = '';
+    if(!empty($_FILES['profile']['name'])){
+        
+        $img = uploadUserImage($_FILES['profile']);
+            if($img == 'inv_img'){
+            echo 'inv_img';
+            exit;
+        }
+            else if($img == 'upd_failed'){
+            echo 'upd_failed';
+            exit;
     }
-    else if($img == 'upd_failed'){
-      echo 'upd_failed';
-      exit;
+}
+    else{
+        $img = 'avt.jpg';
     }
+    // Insert user information into the database
+    $query = "INSERT INTO `user_cred` (`name`, `email`, `phonenum`, `address`, `pincode`, `dob`,`profile`, `password`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $values = [$data['name'], $data['email'], $data['phonenum'], $data['address'], $data['pincode'], $data['dob'], $img, $data['pass']];
+   
+    if(insert($query, $values, 'ssssssss')) {
+        echo '1';
+    } else {
+        echo 'ins_failed';
+    }
+    exit;
 }
 
 if(isset($_POST['login'])) {

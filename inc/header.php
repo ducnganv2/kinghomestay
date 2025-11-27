@@ -10,6 +10,22 @@
       <?php 
         if(isset($_SESSION['login']) && $_SESSION['login']==true)
         {
+          // --- ĐOẠN CODE MỚI THÊM VÀO ---
+          // Mục đích: Lấy lại ảnh đại diện mới nhất từ Database mỗi khi load trang
+          // Đảm bảo dù vừa đổi ảnh xong thì header cũng cập nhật ngay lập tức
+          
+          $uId = $_SESSION['uId'];
+          // Gọi hàm select để lấy thông tin user hiện tại
+          $u_exist = select("SELECT `profile`, `name` FROM `user_cred` WHERE `id`=? LIMIT 1", [$uId], "s");
+          
+          if(mysqli_num_rows($u_exist) > 0){
+            $u_fetch = mysqli_fetch_assoc($u_exist);
+            // Cập nhật lại Session với dữ liệu mới nhất
+            $_SESSION['uPic'] = $u_fetch['profile'];
+            $_SESSION['uName'] = $u_fetch['name'];
+          }
+          // -----------------------------
+
           $path = USERS_IMG_PATH;
           echo<<<data
             <div class="dropdown">

@@ -106,113 +106,126 @@
 
   <?php require('inc/footer.php'); ?>
 
-  <script>
-
+ <script>
+    // --- FORM THÔNG TIN ---
     let info_form = document.getElementById('info-form');
 
-    info_form.addEventListener('submit',function(e){
-      e.preventDefault();
+    info_form.addEventListener('submit', function(e) {
+        e.preventDefault();
 
-      let data = new FormData();
-      data.append('info_form','');
-      data.append('name',info_form.elements['name'].value);
-      data.append('phonenum',info_form.elements['phonenum'].value);
-      data.append('address',info_form.elements['address'].value);
-      data.append('pincode',info_form.elements['pincode'].value);
-      data.append('dob',info_form.elements['dob'].value);
+        let data = new FormData();
+        data.append('info_form', '');
+        data.append('name', info_form.elements['name'].value);
+        data.append('phonenum', info_form.elements['phonenum'].value);
+        data.append('address', info_form.elements['address'].value);
+        data.append('pincode', info_form.elements['pincode'].value);
+        data.append('dob', info_form.elements['dob'].value);
 
-      let xhr = new XMLHttpRequest();
-      xhr.open("POST","ajax/profile.php",true);
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "ajax/profile.php", true);
 
-      xhr.onload = function(){
-        if(this.responseText == 'phone_already'){
-          alert('error',"Số điện thoại này dã được đăng ký!");
+        xhr.onload = function() {
+            let response = this.responseText.trim(); // Xóa khoảng trắng thừa
+            
+            // Debug: In ra xem server thực sự trả về cái gì
+            console.log("Response Info:", response); 
+
+            if (response == 'phone_already') {
+                alert('error', "Số điện thoại này đã được đăng ký!");
+            } else if (response == 0) {
+                alert('error', "Không có thay đổi nào được ghi nhận!");
+            } else if (response == 'no_login') {
+                alert('error', "Phiên đăng nhập hết hạn. Vui lòng tải lại trang!");
+            } else if (response == 1) {
+                // Chỉ khi trả về đúng số 1 mới báo thành công
+                alert('success', 'Cập nhật thông tin thành công!');
+            } else {
+                // Báo lỗi lạ (có thể là lỗi code PHP)
+                alert('error', "Lỗi hệ thống: " + response);
+            }
         }
-        else if(this.responseText == 0){
-          alert('error',"Không có thay đổi ghi nhận!");
-        }
-        else{
-          alert('success','Cập nhật thành công!');
-        }
-      }
 
-      xhr.send(data);
-
+        xhr.send(data);
     });
 
-    
+    // --- FORM ẢNH ĐẠI DIỆN ---
     let profile_form = document.getElementById('profile-form');
 
-    profile_form.addEventListener('submit',function(e){
-      e.preventDefault();
+    profile_form.addEventListener('submit', function(e) {
+        e.preventDefault();
 
-      let data = new FormData();
-      data.append('profile_form','');
-      data.append('profile',profile_form.elements['profile'].files[0]);
+        let data = new FormData();
+        data.append('profile_form', '');
+        data.append('profile', profile_form.elements['profile'].files[0]);
 
-      let xhr = new XMLHttpRequest();
-      xhr.open("POST","ajax/profile.php",true);
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "ajax/profile.php", true);
 
-      xhr.onload = function()
-      {
-        if(this.responseText == 'inv_img'){
-          alert('error',"Chỉ hỗ trợ định dạng JPG, WEBP & PNG!");
-        }
-        else if(this.responseText == 'upd_failed'){
-          alert('error',"Tải hình ảnh thất bại!");
-        }
-        else if(this.responseText == 0){
-          alert('error',"Cập nhật thất bại!");
-        }
-        else{
-          window.location.href=window.location.pathname;
-        }
-      }
+        xhr.onload = function() {
+            let response = this.responseText.trim();
+            console.log("Response Image:", response); 
 
-      xhr.send(data);
+            if (response == 'inv_img') {
+                alert('error', "Chỉ hỗ trợ định dạng JPG, WEBP & PNG!");
+            } else if (response == 'upd_failed') {
+                alert('error', "Tải hình ảnh thất bại!");
+            } else if (response == 0) {
+                alert('error', "Cập nhật thất bại!");
+            } else if (response == 'no_login') {
+                alert('error', "Phiên đăng nhập hết hạn!");
+            } else if (response == 1) {
+                window.location.href = window.location.pathname;
+            } else {
+                alert('error', "Lỗi hệ thống: " + response);
+            }
+        }
+
+        xhr.send(data);
     });
 
-
+    // --- FORM MẬT KHẨU ---
     let pass_form = document.getElementById('pass-form');
 
-    pass_form.addEventListener('submit',function(e){
-      e.preventDefault();
+    pass_form.addEventListener('submit', function(e) {
+        e.preventDefault();
 
-      let new_pass = pass_form.elements['new_pass'].value;
-      let confirm_pass = pass_form.elements['confirm_pass'].value;
+        let new_pass = pass_form.elements['new_pass'].value;
+        let confirm_pass = pass_form.elements['confirm_pass'].value;
 
-      if(new_pass!=confirm_pass){
-        alert('error','Mật khẩu không trùng khớp!');
-        return false;
-      }
-
-
-      let data = new FormData();
-      data.append('pass_form','');
-      data.append('new_pass',new_pass);
-      data.append('confirm_pass',confirm_pass);
-
-      let xhr = new XMLHttpRequest();
-      xhr.open("POST","ajax/profile.php",true);
-
-      xhr.onload = function()
-      {
-        if(this.responseText == 'mismatch'){
-          alert('error',"Mật khẩu không trùng khớp!");
+        if (new_pass != confirm_pass) {
+            alert('error', 'Mật khẩu xác nhận không trùng khớp!');
+            return false;
         }
-        else if(this.responseText == 0){
-          alert('error',"Cập nhật thất bại!");
-        }
-        else{
-          alert('success','Cập nhật thành công!');
-          pass_form.reset();
-        }
-      }
 
-      xhr.send(data);
+        let data = new FormData();
+        data.append('pass_form', '');
+        data.append('new_pass', new_pass);
+        data.append('confirm_pass', confirm_pass);
+
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "ajax/profile.php", true);
+
+        xhr.onload = function() {
+            let response = this.responseText.trim();
+            console.log("Response Pass:", response);
+
+            if (response == 'mismatch') {
+                alert('error', "Mật khẩu xác nhận không trùng khớp!");
+            } else if (response == 0) {
+                alert('error', "Cập nhật thất bại! (Có thể do mật khẩu mới giống mật khẩu cũ)");
+            } else if (response == 'no_login') {
+                alert('error', "Phiên đăng nhập hết hạn!");
+            } else if (response == 1) {
+                alert('success', 'Đổi mật khẩu thành công!');
+                pass_form.reset();
+            } else {
+                alert('error', "Lỗi hệ thống: " + response);
+            }
+        }
+
+        xhr.send(data);
     });
-
-  </script>
+</script>
 
 
 </body>

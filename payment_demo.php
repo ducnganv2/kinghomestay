@@ -251,21 +251,6 @@
       box-shadow: none;
     }
     
-    /* Demo Badge */
-    .demo-badge {
-      position: fixed;
-      top: 70px;
-      right: 20px;
-      background: rgba(255, 0, 0, 0.9);
-      color: white;
-      padding: 8px 15px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: bold;
-      z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-      animation: pulse 2s infinite;
-    }
     
     @keyframes pulse {
       0%, 100% { transform: scale(1); }
@@ -330,8 +315,7 @@
   </style>
 </head>
 <body>
-  <div class="demo-badge">🎭 DEMO MODE</div>
-  
+
   <div class="container">
     <!-- Header -->
     <div class="momo-header">
@@ -457,34 +441,44 @@
     }
     
     function processPayment() {
-      // Show loading
-      document.getElementById('loadingOverlay').style.display = 'flex';
+      // Redirect to appropriate payment page based on selected method
+      const paymentPages = {
+        'momo': 'momo_payment.php', // Stay on current page
+        'visa': 'visa_payment.php',
+        'atm': 'atm_payment.php',
+        'qr': 'qr_payment.php'
+      };
       
-      // Simulate payment processing
-      setTimeout(() => {
-        // Random success/fail for demo (90% success rate)
-        const isSuccess = Math.random() > 0.1;
+      if (selectedMethod === 'momo') {
+        // For MoMo wallet, process payment directly
+        document.getElementById('loadingOverlay').style.display = 'flex';
         
-        // Create form and submit
-        const form = document.createElement('form');
-        form.method = 'POST';
-        form.action = 'payment_callback.php';
-        
-        const statusInput = document.createElement('input');
-        statusInput.type = 'hidden';
-        statusInput.name = 'status';
-        statusInput.value = isSuccess ? 'success' : 'failed';
-        
-        const methodInput = document.createElement('input');
-        methodInput.type = 'hidden';
-        methodInput.name = 'method';
-        methodInput.value = selectedMethod;
-        
-        form.appendChild(statusInput);
-        form.appendChild(methodInput);
-        document.body.appendChild(form);
-        form.submit();
-      }, 2000);
+        setTimeout(() => {
+          const isSuccess = Math.random() > 0.1;
+          
+          const form = document.createElement('form');
+          form.method = 'POST';
+          form.action = 'payment_callback.php';
+          
+          const statusInput = document.createElement('input');
+          statusInput.type = 'hidden';
+          statusInput.name = 'status';
+          statusInput.value = isSuccess ? 'success' : 'failed';
+          
+          const methodInput = document.createElement('input');
+          methodInput.type = 'hidden';
+          methodInput.name = 'method';
+          methodInput.value = selectedMethod;
+          
+          form.appendChild(statusInput);
+          form.appendChild(methodInput);
+          document.body.appendChild(form);
+          form.submit();
+        }, 2000);
+      } else {
+        // For other methods, redirect to their specific pages
+        window.location.href = paymentPages[selectedMethod];
+      }
     }
   </script>
 </body>

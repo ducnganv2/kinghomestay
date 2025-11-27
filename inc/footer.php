@@ -288,10 +288,14 @@
       else if(this.responseText == 'ins_failed'){
         alert('error',"Đăng ký thất bại! Hệ thống đang bảo trì!");
       }
-      else{
+      else if(this.responseText == 1){ 
+       
         alert('success',"Đăng ký thành công!");
         register_form.reset();
-      }
+    }
+      else {
+        alert('error', "Lỗi không xác định: " + this.responseText);
+    }
     }
 
     xhr.send(data);
