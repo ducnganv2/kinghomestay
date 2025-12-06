@@ -7,6 +7,15 @@
   <?php require('inc/links.php'); ?>
   <link rel="icon" type="image/png" href="images/logohm.png">
   <title><?php echo $settings_r['site_title'] ?> - Danh sách phòng</title>
+
+  <style>
+    #rooms-data img {
+        width: 100%;            
+        height: 250px;            
+        object-fit: cover;       
+        border-radius: 5px;    
+    }
+  </style>
 </head>
 <body class="bg-light">
 

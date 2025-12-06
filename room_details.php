@@ -7,6 +7,19 @@
   <?php require('inc/links.php'); ?>
   <link rel="icon" type="image/png" href="images/logohm.png">
   <title><?php echo $settings_r['site_title'] ?> - Chi tiết phòng</title>
+  
+  <style>
+    .room-img-carousel {
+        height: 450px;
+        object-fit: cover;
+    }
+    @media screen and (max-width: 575px) {
+        .room-img-carousel {
+            height: 250px; 
+        }
+    }
+  </style>
+
 </head>
 <body class="bg-light">
 
@@ -44,7 +57,7 @@
         <div id="roomCarousel" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <?php 
-
+              // --- SỬA PHẦN NÀY: Thêm class room-img-carousel ---
               $room_img = ROOMS_IMG_PATH."thumbnail.jpg";
               $img_q = mysqli_query($con,"SELECT * FROM `room_images` 
                 WHERE `room_id`='$room_data[id]'");
@@ -57,7 +70,7 @@
                 {
                   echo"
                     <div class='carousel-item $active_class'>
-                      <img src='".ROOMS_IMG_PATH.$img_res['image']."' class='d-block w-100 rounded'>
+                      <img src='".ROOMS_IMG_PATH.$img_res['image']."' class='d-block w-100 rounded room-img-carousel'>
                     </div>
                   ";
                   $active_class='';
@@ -66,10 +79,10 @@
               }
               else{
                 echo"<div class='carousel-item active'>
-                  <img src='$room_img' class='d-block w-100'>
+                  <img src='$room_img' class='d-block w-100 room-img-carousel'>
                 </div>";
               }
-
+              // --- KẾT THÚC SỬA ---
             ?>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#roomCarousel" data-bs-slide="prev">
@@ -114,6 +127,7 @@
                 </div>
               rating;
 
+              // ... (Phần Features và Facilities giữ nguyên) ...
               $fea_q = mysqli_query($con,"SELECT f.name FROM `features` f 
                 INNER JOIN `room_features` rfea ON f.id = rfea.features_id 
                 WHERE rfea.room_id = '$room_data[id]'");
@@ -145,14 +159,14 @@
               
               echo<<<facilities
                 <div class="mb-3">
-                  <h6 class="mb-1">Facilities</h6>
+                  <h6 class="mb-1">Tiện ích</h6>
                   $facilities_data
                 </div>
               facilities;
 
               echo<<<guests
                 <div class="mb-3">
-                  <h6 class="mb-1">Guests</h6>
+                  <h6 class="mb-1">Số lượng</h6>
                   <span class="badge rounded-pill bg-light text-dark text-wrap">
                     $room_data[adult] Người lớn
                   </span>
@@ -164,7 +178,7 @@
 
               echo<<<area
                 <div class="mb-3">
-                  <h6 class="mb-1">Area</h6>
+                  <h6 class="mb-1">Chiều rộng</h6>
                   <span class='badge rounded-pill bg-light text-dark text-wrap me-1 mb-1'>
                     $room_data[area] m²
                   </span>
@@ -222,7 +236,7 @@
                 echo<<<reviews
                   <div class="mb-4">
                     <div class="d-flex align-items-center mb-2">
-                      <img src="$img_path$row[profile]" class="rounded-circle" loading="lazy" width="30px">
+                      <img src="$img_path$row[profile]" class="rounded-circle" loading="lazy" width="30px" height="30px" style="object-fit: cover;">
                       <h6 class="m-0 ms-2">$row[uname]</h6>
                     </div>
                     <p class="mb-1">

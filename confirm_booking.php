@@ -7,6 +7,15 @@
   <?php require('inc/links.php'); ?>
   <link rel="icon" type="image/png" href="images/logohm.png">
   <title><?php echo $settings_r['site_title'] ?> - Xác nhận đặt phòng</title>
+
+  <style>
+    .confirm-room-img {
+        width: 100%;
+        height: 400px;     
+        object-fit: cover; 
+    }
+
+  </style>
 </head>
 <body class="bg-light">
 
@@ -82,7 +91,7 @@
 
           echo<<<data
             <div class="card p-3 shadow-sm rounded">
-              <img src="$room_thumb" class="img-fluid rounded mb-3">
+              <img src="$room_thumb" class="img-fluid rounded mb-3 confirm-room-img">
               <h5>$room_data[name]</h5>
               <h6>$room_data[price] VND / đêm</h6>
             </div>
