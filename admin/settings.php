@@ -65,7 +65,7 @@
           </div>
         </div>
 
-        <!-- Contact details section -->
+        <!-- Contact details section
         <div class="card border-0 shadow-sm mb-4">
           <div class="card-body">
             <div class="d-flex align-items-center justify-content-between mb-3">
@@ -119,7 +119,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <!-- Contacts details modal -->
 
