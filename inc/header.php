@@ -10,9 +10,7 @@
       <?php 
         if(isset($_SESSION['login']) && $_SESSION['login']==true)
         {
-          // --- ĐOẠN CODE MỚI THÊM VÀO ---
-          // Mục đích: Lấy lại ảnh đại diện mới nhất từ Database mỗi khi load trang
-          // Đảm bảo dù vừa đổi ảnh xong thì header cũng cập nhật ngay lập tức
+
           
           $uId = $_SESSION['uId'];
           // Gọi hàm select để lấy thông tin user hiện tại
