@@ -430,14 +430,22 @@
     let selectedMethod = 'momo';
     
     function selectMethod(element) {
-      // Remove selected class from all
       document.querySelectorAll('.method-item').forEach(item => {
         item.classList.remove('selected');
       });
-      
-      // Add selected class to clicked item
       element.classList.add('selected');
       selectedMethod = element.dataset.method;
+
+      const paymentPages = {
+        'momo': 'payment_demo.php', 
+        'visa': 'visa_payment.php',
+        'atm': 'atm_payment.php',
+        'qr': 'qr_payment.php'
+      };
+
+      if (selectedMethod !== 'momo') {
+        window.location.href = paymentPages[selectedMethod];
+      }
     }
     
     function processPayment() {
