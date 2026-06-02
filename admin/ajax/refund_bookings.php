@@ -97,7 +97,7 @@
                 <p><b>Số tiền đã hoàn:</b> ".number_format($row['trans_amt'])." VNĐ</p>
                 <p>Tiền sẽ về tài khoản của bạn trong vòng 3-5 ngày làm việc tùy thuộc vào ngân hàng.</p>
                 <br>
-                <p>Cảm ơn bạn đã quan tâm đến King Homestay!</p>
+                <p>Cảm ơn bạn đã quan tâm đến Chốn Homestay!</p>
             ";
 
             send_mail($row['email'], $subject, $message);

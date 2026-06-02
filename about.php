@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link  rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css">
   <?php require('inc/links.php'); ?>
-  <link rel="icon" type="image/png" href="images/logohm.png">
+  <link rel="icon" type="image/png" href="images/logohm1.svg">
   <title><?php echo $settings_r['site_title'] ?> - Về chúng tôi</title>
   <style>
     .box{
@@ -121,8 +121,8 @@
   <div class="container my-5">
     <!-- Logo và Brand Name -->
     <div class="logo-container">
-      <img src="images/logohm.png" alt="KingHomestay Logo">
-      <h1 class="brand-name">KING HOMESTAY & COFFEE</h1>
+      <img src="images/logohm1.svg" alt="KingHomestay Logo">
+      <h1 class="brand-name">CHỐN HOMESTAY & COFFEE</h1>
     </div>
 
     <!-- Giới thiệu chính -->

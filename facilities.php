@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <?php require('inc/links.php'); ?>
-  <link rel="icon" type="image/png" href="images/logohm.png">
+  <link rel="icon" type="image/png" href="images/logohm1.svg">
   <title><?php echo $settings_r['site_title'] ?> - Tiện ích</title>
   <style>
     .pop:hover{
@@ -56,7 +56,7 @@
     <h2 class="fw-bold h-font text-center">TIỆN ÍCH</h2>
     <div class="h-line bg-dark"></div>
     <p class="text-center mt-3">
-    Dù không có phòng gym hay bể bơi, King Homestay vẫn ghi điểm với du khách nhờ vào dịch vụ tận tình và các tiện ích như WiFi miễn phí, lễ tân 24/7 và dịch vụ cho thuê xe đạp. 
+    Dù không có phòng gym hay bể bơi, Chốn Homestay vẫn ghi điểm với du khách nhờ vào dịch vụ tận tình và các tiện ích như WiFi miễn phí, lễ tân 24/7 và dịch vụ cho thuê xe đạp. 
     <br>Khu vực lounge và sân vườn nhỏ xinh là nơi lý tưởng để thư giãn, đọc sách hoặc thưởng thức một tách cà phê sáng.
     </p>
   </div>

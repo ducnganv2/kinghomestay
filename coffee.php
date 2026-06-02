@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <?php require('inc/links.php'); ?>
-  <link rel="icon" type="image/png" href="images/logohm.png">
+  <link rel="icon" type="image/png" href="images/logohm1.svg">
   <title><?php echo $settings_r['site_title'] ?> - Coffee Menu</title>
   <style>
     .coffee-card {
@@ -96,7 +96,7 @@
     <h2 class="fw-bold h-font text-center">COFFEE MENU</h2>
     <div class="h-line bg-dark"></div>
     <p class="text-center mt-3">
-      Thưởng thức những ly cà phê thơm ngon tại Coffee Shop của King Homestay
+      Thưởng thức những ly cà phê thơm ngon tại Coffee Shop của Chốn Homestay
     </p>
   </div>
 

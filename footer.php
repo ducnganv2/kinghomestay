@@ -5,7 +5,7 @@
       <!-- Cột 1: Về chúng tôi -->
       <div class="col-lg-4 col-md-6">
         <div class="footer-brand mb-3">
-          <img src="images/logohm.png" alt="Logo" width="60" height="60" class="mb-3">
+          <img src="images/logohm1.svg" alt="Logo" width="60" height="60" class="mb-3">
           <h3 class="h-font fw-bold fs-4 text-white"><?php echo $settings_r['site_title'] ?></h3>
         </div>
         <p class="text-light mb-3">

@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <?php require('inc/links.php'); ?>
-  <link rel="icon" type="image/png" href="images/logohm.png">
+  <link rel="icon" type="image/png" href="images/logohm1.svg">
   <title><?php echo $settings_r['site_title'] ?> - Lịch sử đặt phòng</title>
 </head>
 <body class="bg-light">

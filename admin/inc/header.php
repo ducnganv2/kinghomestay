@@ -1,5 +1,5 @@
 <div class="container-fluid bg-dark text-light p-3 d-flex align-items-center justify-content-between sticky-top">
-  <h5 class="mb-0 fw-bold h-font">King Homestay</h3>
+  <h5 class="mb-0 fw-bold h-font">Chốn Homestay</h3>
   <a href="logout.php" class="btn btn-light btn-sm">Đăng xuất</a>
 </div>
 

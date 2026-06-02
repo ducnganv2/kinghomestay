@@ -155,7 +155,7 @@ function send_mail($email, $subject, $message)
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
 
-        $mail->setFrom('hoxuanhung2802@gmail.com', 'King Homestay Admin');
+        $mail->setFrom('hoxuanhung2802@gmail.com', 'Chốn Homestay Admin');
         $mail->addAddress($email); 
 
         $mail->isHTML(true);
